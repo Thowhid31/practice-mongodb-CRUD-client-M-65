@@ -4,6 +4,8 @@ import './App.css';
 
 function App() {
   const [users, setUsers] = useState([])
+
+  //load data
   useEffect(() => {
     fetch('http://localhost:5000/users')
       .then(res => res.json())
