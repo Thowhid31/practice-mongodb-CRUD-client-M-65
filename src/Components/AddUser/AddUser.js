@@ -1,14 +1,14 @@
 import React from 'react';
 
 const AddUser = () => {
-    const handleAddUser = e => {
-        e.preventDefault ();
-        const name = e.target.name.value;
-        const email = e.target.email.value;
+    const handleAddUser = event =>{
+        event.preventDefault();
+        const name = event.target.name.value;
+        const email = event.target.email.value;
 
-        const user = {name, email}
+        const user = {name, email};
 
-        //send data to the server
+        // send data to the server
         //google: mdn fetch post
         fetch('http://localhost:5000/user', {
             method: 'POST',
@@ -18,16 +18,20 @@ const AddUser = () => {
             body: JSON.stringify(user)
         })
         .then(res => res.json())
-        .then(data => {
+        .then(data =>{
             console.log('success', data);
+            alert('users added successfully!!!');
+            event.target.reset();
         })
     }
     return (
         <div>
-            <h1>Adding Users</h1>
+            <h2>Please add a new User</h2>
             <form onSubmit={handleAddUser}>
-                <input type="text" name='name'  placeholder='Name' required /><br/>
-                <input type="email" name='email'  placeholder='Email' required /><br/>
+                <input type="text" name="name" placeholder='Name' required />
+                <br />
+                <input type="email" name="email" placeholder='Email' required />
+                <br />
                 <input type="submit" value="Add User" />
             </form>
         </div>
